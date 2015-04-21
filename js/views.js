@@ -1,13 +1,19 @@
-var view = {
-	badge: "Lorem Ipsum",
-	src: "http://www.example.com"
-};
+function listBadges() {
 
-var template = '{{badge}} <img src="{{src}}" />';
+}
 
-var html = Mustache.to_html(template, view);
+function addLinkedInButton(course) {
+	var $badgesList = $('#badges-list');
 
-$('#badges-list').html(html);
+	var view = {
+		course: course,
+	};
+
+	var template = '{{badge}} <img src="{{src}}" />';
+	var html = Mustache.to_html(template, view);
+	$badgesList.html(html);
+
+}
 
 
 
