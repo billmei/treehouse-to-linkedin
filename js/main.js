@@ -10,24 +10,29 @@ $(document).ready(function() {
     }).done(function(data) {
 
       var highEXPlangs = findHighEXPLangs(data.points);
-      var completedTracks = findCompletedTracks(data.badges);
+      var completedCourses = findCompletedCourses(data.badges);
 
-      if (completedTracks.length === 0 && highEXPlangs.length === 0) {
+      console.log(highEXPlangs);
+      console.log(completedCourses);
+
+
+      if (completedCourses.length === 0 && highEXPlangs.length === 0) {
         // "It looks like you haven't completed any tracks yet. Want to add your work in progress badges instead?"
         // Let the user choose their badge
-      } else if (completedTracks.length === 0 && highEXPlangs.length > 1) {
+      } else if (completedCourses.length === 0 && highEXPlangs.length > 1) {
         // We have a many high EXP languages, but haven't completed a track yet.
         // Let the user choose their badge
-      } else if (completedTracks.length === 0 && highEXPlangs.length === 1) {
+      } else if (completedCourses.length === 0 && highEXPlangs.length === 1) {
         // We have one high EXP language, but haven't completed a track yet.
 
-      } else if (completedTracks.length > 1) {
+      } else if (completedCourses.length > 1) {
         // We've completed multiple tracks.
         // Let the user choose their badge.
 
-      } else { // completedTracks.length === 1
+      } else { // completedCourses.length === 1
         // We've completed one track.
-
+        var linkedinurl = buildLinkedInShareURL(completedCourses[0], username);
+        console.log(linkedinurl);
       }
 
     }).fail(function(data) {
@@ -50,8 +55,8 @@ function findHighEXPLangs(points) {
 }
 
 // Get all the tracks that the user has completed
-function findCompletedTracks(badges) {
-  var completedTracks = [];
+function findCompletedCourses(badges) {
+  var completedCourses = [];
   var availableTracks = {
     "Advanced Sass Concepts" : "Web Design",
     "Combine and Minify Assets" : "Front-End Web Development",
@@ -68,19 +73,31 @@ function findCompletedTracks(badges) {
     "Efficiency!" : "Learn Java"
   };
 
-  for (var j = 0; j < badges.length; j++) {
-    if (badges[j].name in availableTracks) {
-      completedTracks.push(availableTracks[badges[j].name]);
+  for (var i = 0; i < badges.length; i++) {
+    if (badges[i].name in availableTracks) {
+      completedCourses.push({
+        'track' : availableTracks[badges[i].name],
+        'badge' : badges[i]
+      });
     }
   }
 
-  return completedTracks;
+  return completedCourses;
 }
 
+function buildLinkedInShareURL(course, username) {
+  var track = course.track;
+  var badge = course.badge;
 
+  var url = 'https://www.linkedin.com/profile/add?_ed=0_7nTFLiuDkkQkdELSpruCwI3eGOWS9kTguPfeqlj5kgb0SLpi97XL5H3ygTHZ0a1-aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv';
+  url += '&pfCertificationName=' + encodeURIComponent(track);
+  url += '&pfCertificationUrl=' + encodeURIComponent('http://teamtreehouse.com/' + username);
+  url += '&pfCertStartDate=' +
+  (function(date){
+    return date.getFullYear() + date.getMonth().pad(2);
+  })(new Date(badge.earned_date));
 
-function shareBadgeToLinkedIn(badge) {
-
+  return url;
 }
 
 
@@ -90,3 +107,14 @@ function alertModal(title, body) {
   $('#alert-modal-body').html(body);
   $('#alert-modal').modal('show');
 }
+
+// Pads an integer with the specified number of leading zeroes
+Number.prototype.pad = function(digits) {
+  var s = String(this);
+  while (s.length < (digits || 0)) {
+    s = '0' + s;
+  }
+
+  return s;
+};
+
