@@ -22,7 +22,7 @@
 
   <div class="jumbotron">
     <div class="container">
-    <h1>Treehouse to Linkedin</h1>
+    <h1>Treehouse to LinkedIn</h1>
     <p>Showcase your accomplishments from Treehouse on LinkedIn</p>
     <form id="username-form">
       <div class="form-group">
@@ -30,7 +30,7 @@
         <input type="text" id="username" class="form-control" placeholder="Your Treehouse Username">
       </div>
       <div class="form-group">
-        <button id="search-username" class="btn btn-primary btn-lg" >Go &raquo;</button>
+        <button id="search-username" class="btn btn-primary btn-lg" >Export Data &raquo;</button>
       </div>
     </form>
     </div>
@@ -39,10 +39,10 @@
   <div class="container">
     <!-- Example row of columns -->
     <div class="row">
-    <div class="col-md-4">
-      <h2>Select the badge you want</h2>
-      <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui.</p>
-    </div>
+      <div class="col-xs-12">
+        <h2>Select the badge you want</h2>
+        <div id="badges-list"></div>
+      </div>
     </div>
 
 <!-- 
@@ -53,9 +53,6 @@
     http://teamtreehouse.com/kortaggio.json
     http://reportcard.rileyh.com/instructions.html
 
-  Step 1.2: Fetch JSON information and parse it
-  Step 1.3: Search to see if the user has completed any tracks.
-  Step 1.9: Return "It looks like you haven't completed any tracks yet. Want to add your work in progress badges instead?"
   Step 2: Select the completed tracks you want to showcase.
   Step 3: Add these tracks to linkedin.
 
@@ -73,7 +70,9 @@
   </div> <!-- /container -->
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
+  <script src="js/vendor/mustache.min.js"></script>
   <script src="js/vendor/bootstrap.min.js"></script>
+  <script src="js/views.js"></script>
   <script src="js/main.js"></script>
 
   <div id="alert-modal" class="modal fade">
