@@ -3,13 +3,13 @@ function listBadges() {
 }
 
 // Hides the list of coureses currently displayed
-function hideCourses() {
+function hideResultArea() {
   var $resultList = $('.result-list');
   $resultList.slideUp();
 }
 
 // Displays and shows the provided list of courses
-function displayCourses(courseList) {
+function displayAccomplishments(courseList) {
   var $badgesList = $('#badges-list');
   var $resultList = $('.result-list');
 
