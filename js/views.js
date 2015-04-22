@@ -25,7 +25,25 @@ function displayCourses(courseList) {
   var html = Mustache.to_html(template, view);
   $badgesList.html(html);
   $resultList.slideDown();
+  scrollIntoView($resultList);
 }
 
 
+// Start the loading spinner
+function startLoadingSpinner() {
+  $('.loading-spinner').addClass('loading-enabled');
+  $('#search-username').addClass('loading-disabled');
+}
 
+// Stop the loading spinner
+function stopLoadingSpinner() {
+  $('.loading-spinner').removeClass('loading-enabled');
+  $('#search-username').removeClass('loading-disabled');
+}
+
+// Scroll to the specified element
+function scrollIntoView(el) {
+  $('html,body').animate({
+    scrollTop: el.offset().top
+  }, 500);
+}
