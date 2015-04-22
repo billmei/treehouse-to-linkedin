@@ -2,18 +2,19 @@ function listBadges() {
 
 }
 
-function displayCourse(courseName, url) {
+function displayCourse(courseList) {
   var $badgesList = $('#badges-list');
   var $resultList = $('.result-list');
 
   var view = {
-    course: courseName,
-    share_url : url
+    courses: courseList
   };
   
-  var template = '<a href="{{share_url}}" rel="nofollow">' +
-                 '<span class="course-title">{{course}}</span>' +
-                 '<img src="img/linkedin-add-to-profile.png" alt="Add To LinkedIn" class="btn-linkedin"/></a>';
+  var template = '{{#courses}}' +
+                 '<a href="{{share_url}}" rel="nofollow">' +
+                 '<span class="course-title">{{title}}</span>' +
+                 '<img src="img/linkedin-add-to-profile.png" alt="Add To LinkedIn" class="btn-linkedin"/></a>' +
+                 '{{/courses}}';
   var html = Mustache.to_html(template, view);
   $badgesList.html(html);
   $resultList.slideDown();

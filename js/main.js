@@ -15,24 +15,32 @@ $(document).ready(function() {
       console.log(highEXPlangs);
       console.log(completedCourses);
 
-
       if (completedCourses.length === 0 && highEXPlangs.length === 0) {
         // "It looks like you haven't completed any tracks yet. Want to add your work in progress badges instead?"
         // Let the user choose their badge
       } else if (completedCourses.length === 0 && highEXPlangs.length > 1) {
         // We have a many high EXP languages, but haven't completed a track yet.
         // Let the user choose their badge
+
       } else if (completedCourses.length === 0 && highEXPlangs.length === 1) {
         // We have one high EXP language, but haven't completed a track yet.
 
-      } else if (completedCourses.length > 1) {
-        // We've completed multiple tracks.
-        // Let the user choose their badge.
+      } else { // completedCourses.length >= 1
+        // We've completed one or more tracks
+        var courseList = [];
 
-      } else { // completedCourses.length === 1
-        // We've completed one track.
-        var shareURL = buildLinkedInShareURL(completedCourses[0], username);
-        displayCourse(completedCourses[0].track, shareURL);
+        for (var i = 0; i < completedCourses.length; i++) {
+          var course = completedCourses[i];
+          var track = course.track;
+          var earnedDate = course.badge.earned_date;
+
+          courseList.push({
+            'title' : track,
+            'share_url' : buildLinkedInShareURL(track, username, earnedDate),
+          });
+        }
+
+        displayCourse(courseList);
       }
 
     }).fail(function(data) {
@@ -86,17 +94,14 @@ function findCompletedCourses(badges) {
 }
 
 // Builds the share URL required for LinkedIn
-function buildLinkedInShareURL(course, username) {
-  var track = course.track;
-  var badge = course.badge;
-
+function buildLinkedInShareURL(track, username, earnedDate) {
   var url = 'https://www.linkedin.com/profile/add?_ed=0_7nTFLiuDkkQkdELSpruCwI3eGOWS9kTguPfeqlj5kgb0SLpi97XL5H3ygTHZ0a1-aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv';
   url += '&pfCertificationName=' + encodeURIComponent(track);
   url += '&pfCertificationUrl=' + encodeURIComponent('http://teamtreehouse.com/' + username);
   url += '&pfCertStartDate=' +
   (function(date){
     return date.getFullYear() + date.getMonth().pad(2);
-  })(new Date(badge.earned_date));
+  })(new Date(earnedDate));
 
   return url;
 }
