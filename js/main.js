@@ -3,6 +3,7 @@ $(document).ready(function() {
     event.preventDefault();
 
     hideCourses();
+    startLoadingSpinner();
 
     var username = $('#username').val();
     var treehouseURL = 'http://teamtreehouse.com/';
@@ -45,6 +46,8 @@ $(document).ready(function() {
 
         displayCourses(courseList);
       }
+
+      stopLoadingSpinner();
 
     }).fail(function(data) {
       alertModal('User does not exist', 'Sorry! We coudn\'t find that username on Treehouse. Did your subscription expire, or did you spell the username correctly?');

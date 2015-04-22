@@ -1,6 +1,7 @@
 body {
   background: url("../img/swirl-pattern.png");
   background-repeat: repeat;
+  min-height: 100vh; /*Works on everything except IE*/
 }
 
 hr {
@@ -42,12 +43,31 @@ a, a:hover, a:focus, a:active, a:visited {
     display: inline-block;
     margin: 0 2px;
     vertical-align: bottom;
+    text-align: center;
   }
   #username {
     width: 20em;
   }
   #search-username {
     display: block;
+  }
+  .loading-spinner {
+    display: inline-block;
+    position: relative;
+    opacity: 0;
+    top: 1.5em;
+    z-index: -2;
+    color: white;
+  }
+  .loading-enabled {
+    opacity: 1;
+    z-index: 20;
+  }
+  .loading-disabled,
+  .loading-disabled:hover,
+  .loading-disabled:active,
+  .loading-disabled:focus {
+    color: rgba(0,0,0,0);
   }
 
 .result-list {
