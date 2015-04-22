@@ -31,8 +31,8 @@ $(document).ready(function() {
 
       } else { // completedCourses.length === 1
         // We've completed one track.
-        var linkedinurl = buildLinkedInShareURL(completedCourses[0], username);
-        console.log(linkedinurl);
+        var shareURL = buildLinkedInShareURL(completedCourses[0], username);
+        displayCourse(completedCourses[0].track, shareURL);
       }
 
     }).fail(function(data) {
@@ -85,6 +85,7 @@ function findCompletedCourses(badges) {
   return completedCourses;
 }
 
+// Builds the share URL required for LinkedIn
 function buildLinkedInShareURL(course, username) {
   var track = course.track;
   var badge = course.badge;
@@ -100,9 +101,8 @@ function buildLinkedInShareURL(course, username) {
   return url;
 }
 
-
+// Display an error message to the user in a modal
 function alertModal(title, body) {
-  // Display error message to the user in a modal
   $('#alert-modal-title').html(title);
   $('#alert-modal-body').html(body);
   $('#alert-modal').modal('show');

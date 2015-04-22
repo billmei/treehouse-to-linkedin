@@ -1,19 +1,15 @@
 <!doctype html>
-<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang=""> <![endif]-->
-<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8" lang=""> <![endif]-->
-<!--[if IE 8]>         <html class="no-js lt-ie9" lang=""> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang=""> <!--<![endif]-->
+<html lang="en">
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
-    <title></title>
+    <title>Treehouse to LinkedIn: Easily add your completed courses from Treehouse to LinkedIn</title>
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <link rel="stylesheet" href="css/bootstrap.min.css">
     <link rel="stylesheet" href="css/main.css">
 
-    <script src="js/vendor/modernizr-2.8.3-respond-1.4.2.min.js"></script>
   </head>
   <body>
     <!--[if lt IE 8]>
@@ -23,21 +19,20 @@
   <div class="jumbotron">
     <div class="container">
     <h1>Treehouse to LinkedIn</h1>
-    <p>Showcase your accomplishments from Treehouse on LinkedIn</p>
+    <p>Add your completed courses on LinkedIn in two clicks.</p>
     <form id="username-form">
       <div class="form-group">
         <label for="username">Your Treehouse Username</label>
         <input type="text" id="username" class="form-control" placeholder="Your Treehouse Username">
       </div>
       <div class="form-group">
-        <button id="search-username" class="btn btn-primary btn-lg" >Export Data &raquo;</button>
+        <button id="search-username" class="btn btn-info" >Export Data &raquo;</button>
       </div>
     </form>
     </div>
   </div>
 
   <div class="container">
-    <!-- Example row of columns -->
     <div class="row">
       <div class="col-xs-12">
         <h2>Select the badge you want</h2>
@@ -45,37 +40,12 @@
       </div>
     </div>
 
-<!-- 
-    Treehouse idea: One click, add your badges to LinkedIn
-
-    https://www.crystalknows.com/profiles?id=15160
-
-    http://teamtreehouse.com/kortaggio.json
-    http://reportcard.rileyh.com/instructions.html
-
-  Step 2: Select the completed tracks you want to showcase.
-  Step 3: Add these tracks to linkedin.
-
-    https://www.linkedin.com/profile/add?_ed=0_7nTFLiuDkkQkdELSpruCwI3eGOWS9kTguPfeqlj5kgb0SLpi97XL5H3ygTHZ0a1-aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv&pfCertificationName=Foo&pfCertificationUrl=http%3A%2F%2Fwww.example.com&pfLicenseNo=1234&pfCertStartDate=201501&pfCertFuture=201602&trk=onsite_longurl
-
-
-    <div><a href="https://www.linkedin.com/profile/add?_ed=0_7nTFLiuDkkQkdELSpruCwI3eGOWS9kTguPfeqlj5kgb0SLpi97XL5H3ygTHZ0a1-aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv
-
-    &pfCertificationName=Foo
-    &pfCertificationUrl=http%3A%2F%2Fwww.example.com
-    &pfLicenseNo=1234
-    &pfCertStartDate=201501
-    &pfCertFuture=201602
-
-    &trk=onsite_html" rel="nofollow" target="_blank"><img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png" alt="LinkedIn Add to Profile button"></a></div>
- -->
-
     <hr>
 
     <footer>
       <p>Created by <a href="http://www.kortaggio.com">Bill Mei</a>. This website is not affiliated with Treehouse or Treehouse Island, Inc.</p>
     </footer>
-  </div> <!-- /container -->
+  </div>
   <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
   <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.2.min.js"><\/script>')</script>
   <script src="js/vendor/mustache.min.js"></script>
@@ -97,6 +67,8 @@
       </div>
     </div>
   </div>
+  
+  <div class="prefetch"></div>
 
   </body>
 </html>
