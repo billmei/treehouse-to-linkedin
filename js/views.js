@@ -1,7 +1,3 @@
-function listBadges() {
-
-}
-
 // Hides the list of coureses currently displayed
 function hideResultArea() {
   var $resultList = $('.result-list');
@@ -28,7 +24,6 @@ function displayAccomplishments(courseList) {
   scrollIntoView($resultList);
 }
 
-
 // Start the loading spinner
 function startLoadingSpinner() {
   $('.loading-spinner').addClass('loading-enabled');
@@ -47,3 +42,11 @@ function scrollIntoView(el) {
     scrollTop: el.offset().top
   }, 500);
 }
+
+// Display an error message to the user in a modal
+function alertModal(title, body) {
+  $('#alert-modal-title').html(title);
+  $('#alert-modal-body').html(body);
+  $('#alert-modal').modal('show');
+}
+

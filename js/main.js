@@ -16,15 +16,17 @@ $(document).ready(function() {
       var highEXPlangs = findHighEXPLangs(data.points);
       var completedCourses = findCompletedCourses(data.badges);
 
-      console.log(highEXPlangs);
-      console.log(completedCourses);
-
       if (completedCourses.length === 0 && highEXPlangs.length === 0) {
         // We haven't completed a track yet.
         alertModal("No tracks completed", "It looks like you haven't completed any tracks yet. Check back later when you've completed a track or when you have more than 1,000 points in any programming language. Happy learning!");
 
-      } else if (completedCourses.length === 0 && highEXPlangs.length >= 1) {
+      } else if (completedCourses.length === 0 && highEXPlangs.length > 0) {
         // We have one or more high EXP languages, but haven't completed a track yet.
+
+        // Completed courses have priority over language with high EXP points,
+        // so these won't be shown if you've completed at least one course. This is
+        // because it's harder to finish a course than it is to get a lot of EXP in
+        // any particular language.
         var languages = [];
         for (var j = 0; j < highEXPlangs.length; j++) {
           var language = highEXPlangs[j];
@@ -114,13 +116,6 @@ function buildLinkedInShareURL(track, username, earnedDate) {
   })(earnedDate);
 
   return url;
-}
-
-// Display an error message to the user in a modal
-function alertModal(title, body) {
-  $('#alert-modal-title').html(title);
-  $('#alert-modal-body').html(body);
-  $('#alert-modal').modal('show');
 }
 
 // Pads an integer with the specified number of leading zeroes
