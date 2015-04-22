@@ -56,16 +56,26 @@ a, a:hover, a:focus, a:active, a:visited {
   .result-list h2 {
     margin-bottom: 1em;
   }
-.course-title {
-  font-size: 2em;
-  font-weight: bold;
-  vertical-align: top;
+#badges-list {
+  padding-left: 0;
+  list-style: none;
 }
-
-.btn-linkedin {
-  display: inline-block;
-  margin: 2px 1em;
-}
+  #badges-list li {
+    margin: 1em 0;
+  }
+  #badges-list a {
+    display: inline-block;
+  }
+  .btn-linkedin {
+    display: inline-block;
+    margin: 10px 1em 0 0;
+  }
+  .course-title {
+    display: inline-block;
+    font-size: 2.5em;
+    font-weight: bold;
+    vertical-align: top;
+  }
 
 @media (max-width: 500px) {
   .jumbotron {

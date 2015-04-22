@@ -1,6 +1,9 @@
 $(document).ready(function() {
   $('#search-username').on('click', function(event) {
     event.preventDefault();
+
+    hideCourses();
+
     var username = $('#username').val();
     var treehouseURL = 'http://teamtreehouse.com/';
 
@@ -40,7 +43,7 @@ $(document).ready(function() {
           });
         }
 
-        displayCourse(courseList);
+        displayCourses(courseList);
       }
 
     }).fail(function(data) {
