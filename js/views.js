@@ -4,6 +4,7 @@ function listBadges() {
 
 function displayCourse(courseName, url) {
   var $badgesList = $('#badges-list');
+  var $resultList = $('.result-list');
 
   var view = {
     course: courseName,
@@ -15,6 +16,7 @@ function displayCourse(courseName, url) {
                  '<img src="img/linkedin-add-to-profile.png" alt="Add To LinkedIn" class="btn-linkedin"/></a>';
   var html = Mustache.to_html(template, view);
   $badgesList.html(html);
+  $resultList.slideDown();
 }
 
 
