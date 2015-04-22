@@ -2,7 +2,7 @@ $(document).ready(function() {
   $('#search-username').on('click', function(event) {
     event.preventDefault();
 
-    hideCourses();
+    hideResultArea();
     startLoadingSpinner();
 
     var username = $('#username').val();
@@ -20,37 +20,41 @@ $(document).ready(function() {
       console.log(completedCourses);
 
       if (completedCourses.length === 0 && highEXPlangs.length === 0) {
-        // "It looks like you haven't completed any tracks yet. Want to add your work in progress badges instead?"
-        // Let the user choose their badge
-      } else if (completedCourses.length === 0 && highEXPlangs.length > 1) {
-        // We have a many high EXP languages, but haven't completed a track yet.
-        // Let the user choose their badge
+        // We haven't completed a track yet.
+        alertModal("No tracks completed", "It looks like you haven't completed any tracks yet. Check back later when you've completed a track or when you have more than 1,000 points in any programming language. Happy learning!");
 
-      } else if (completedCourses.length === 0 && highEXPlangs.length === 1) {
-        // We have one high EXP language, but haven't completed a track yet.
+      } else if (completedCourses.length === 0 && highEXPlangs.length >= 1) {
+        // We have one or more high EXP languages, but haven't completed a track yet.
+        var languages = [];
+        for (var j = 0; j < highEXPlangs.length; j++) {
+          var language = highEXPlangs[j];
+
+          languages.push({
+            'title' : language,
+            'share_url' : buildLinkedInShareURL(language, username, new Date())
+          });
+        }
+        displayAccomplishments(languages);
 
       } else { // completedCourses.length >= 1
         // We've completed one or more tracks
-        var courseList = [];
-
+        var courses = [];
         for (var i = 0; i < completedCourses.length; i++) {
           var course = completedCourses[i];
           var track = course.track;
           var earnedDate = course.badge.earned_date;
 
-          courseList.push({
+          courses.push({
             'title' : track,
-            'share_url' : buildLinkedInShareURL(track, username, earnedDate),
+            'share_url' : buildLinkedInShareURL(track, username, new Date(earnedDate)),
           });
         }
-
-        displayCourses(courseList);
+        displayAccomplishments(courses);
       }
-
-      stopLoadingSpinner();
-
     }).fail(function(data) {
-      alertModal('User does not exist', 'Sorry! We coudn\'t find that username on Treehouse. Did your subscription expire, or did you spell the username correctly?');
+      alertModal("User does not exist", "Sorry! We coudn't find that username on Treehouse. Did your subscription expire, or did you spell the username correctly?");
+    }).always(function(){
+      stopLoadingSpinner();
     });
   });
 });
@@ -107,7 +111,7 @@ function buildLinkedInShareURL(track, username, earnedDate) {
   url += '&pfCertStartDate=' +
   (function(date){
     return date.getFullYear() + date.getMonth().pad(2);
-  })(new Date(earnedDate));
+  })(earnedDate);
 
   return url;
 }
