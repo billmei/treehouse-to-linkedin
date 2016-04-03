@@ -6,7 +6,7 @@ $(document).ready(function() {
     startLoadingSpinner();
 
     var username = $('#username').val();
-    var treehouseURL = '//teamtreehouse.com/';
+    var treehouseURL = 'https://teamtreehouse.com/';
 
     $.ajax({
       url: treehouseURL + username + '.json',
@@ -127,4 +127,3 @@ Number.prototype.pad = function(digits) {
 
   return s;
 };
-
