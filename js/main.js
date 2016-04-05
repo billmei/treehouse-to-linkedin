@@ -54,7 +54,7 @@ $(document).ready(function() {
         displayAccomplishments(courses);
       }
     }).fail(function(data) {
-      alertModal("User does not exist", "Sorry! We coudn't find that username on Treehouse. Did your subscription expire, or did you spell the username correctly?");
+      alertModal("User does not exist", "Sorry! We coudn't find that username on Treehouse. Did your subscription expire, or did you spell the username correctly? If you're sure the user exists, make sure to double-check that the URL of this page begins with \"https\" and not \"http\".");
     }).always(function(){
       stopLoadingSpinner();
     });
