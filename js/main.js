@@ -6,7 +6,7 @@ $(document).ready(function() {
     startLoadingSpinner();
 
     var username = $('#username').val();
-    var treehouseURL = 'https://teamtreehouse.com/';
+    var treehouseURL = '//teamtreehouse.com/';
 
     $.ajax({
       url: treehouseURL + username + '.json',
