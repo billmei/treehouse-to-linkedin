@@ -2,7 +2,7 @@ An "Add to LinkedIn" button to display your accomplishments from Treehouse.
 
 # Demo
 
-https://kortaggio.github.io/treehouse-to-linkedin
+https://billmei.github.io/treehouse-to-linkedin
 
 # Install instructions
 
